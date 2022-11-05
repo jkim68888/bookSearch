@@ -8,5 +8,5 @@
 import Foundation
 
 protocol BooksProtocol {
-	func fetchBooksList(query: String, completion: @escaping (Result<Books, Error>) -> Void)
+	func fetchBooksList(query: BooksQuery, completion: @escaping (Result<Books, Error>) -> Void)
 }

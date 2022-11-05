@@ -26,6 +26,8 @@
 		9A1EB67B2916838E00C1CB2E /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB67A2916838E00C1CB2E /* NetworkConfig.swift */; };
 		9A1EB67E2916883800C1CB2E /* BooksRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB67D2916883800C1CB2E /* BooksRepository.swift */; };
 		9A1EB6802916892400C1CB2E /* BooksProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB67F2916892400C1CB2E /* BooksProtocol.swift */; };
+		9A1EB6822916A1A200C1CB2E /* SearchBooksUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB6812916A1A200C1CB2E /* SearchBooksUseCase.swift */; };
+		9A1EB6842916A4F000C1CB2E /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB6832916A4F000C1CB2E /* AppConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		9A1EB67A2916838E00C1CB2E /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		9A1EB67D2916883800C1CB2E /* BooksRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksRepository.swift; sourceTree = "<group>"; };
 		9A1EB67F2916892400C1CB2E /* BooksProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksProtocol.swift; sourceTree = "<group>"; };
+		9A1EB6812916A1A200C1CB2E /* SearchBooksUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBooksUseCase.swift; sourceTree = "<group>"; };
+		9A1EB6832916A4F000C1CB2E /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,7 @@
 			children = (
 				9A1EB5F72914DF3900C1CB2E /* AppDelegate.swift */,
 				9A1EB5F92914DF3900C1CB2E /* SceneDelegate.swift */,
+				9A1EB6832916A4F000C1CB2E /* AppConfiguration.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -245,6 +250,7 @@
 		9A1EB63329151E6D00C1CB2E /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				9A1EB6812916A1A200C1CB2E /* SearchBooksUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -486,8 +492,10 @@
 				9A1EB674291682C400C1CB2E /* Endpoint.swift in Sources */,
 				9A1EB5FA2914DF3900C1CB2E /* SceneDelegate.swift in Sources */,
 				9A1EB66F29167BFE00C1CB2E /* BookDTO.swift in Sources */,
+				9A1EB6822916A1A200C1CB2E /* SearchBooksUseCase.swift in Sources */,
 				9A1EB6772916834100C1CB2E /* DataTransferService.swift in Sources */,
 				9A1EB6712916822A00C1CB2E /* APIEndpoint.swift in Sources */,
+				9A1EB6842916A4F000C1CB2E /* AppConfiguration.swift in Sources */,
 				9A1EB67E2916883800C1CB2E /* BooksRepository.swift in Sources */,
 				9A1EB6422916388C00C1CB2E /* Book.swift in Sources */,
 				9A1EB6392915FD4900C1CB2E /* BookListViewController.swift in Sources */,

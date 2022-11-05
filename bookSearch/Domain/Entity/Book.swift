@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct BooksQuery {
+	let query: String
+	let start: Int
+	let end: Int
+}
+
 struct Books {
 	let totalCount: Int
 	let books: [Book]

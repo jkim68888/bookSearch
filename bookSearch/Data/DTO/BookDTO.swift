@@ -13,9 +13,12 @@ import Foundation
 // MARK: - Request
 struct BooksRequestDTO: Encodable {
 	let q: String
+	let start: Int // books 시작 index
+	let maxResults: Int // books end index
 	let key: String
 }
 
+// MARK: - Response
 struct BooksResponseDTO: Decodable {
 	let totalItems: Int
 	let items: [BookDTO]
@@ -26,7 +29,6 @@ struct BooksResponseDTO: Decodable {
 	}
 }
 
-// MARK: - Response
 struct BookDTO: Decodable {
 	let id: String
 	let volumeInfo: VolumeDTO
