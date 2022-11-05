@@ -19,6 +19,13 @@
 		9A1EB6402916131900C1CB2E /* BooksListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB63F2916131900C1CB2E /* BooksListItemCell.swift */; };
 		9A1EB6422916388C00C1CB2E /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB6412916388C00C1CB2E /* Book.swift */; };
 		9A1EB66F29167BFE00C1CB2E /* BookDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB66E29167BFE00C1CB2E /* BookDTO.swift */; };
+		9A1EB6712916822A00C1CB2E /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB6702916822A00C1CB2E /* APIEndpoint.swift */; };
+		9A1EB674291682C400C1CB2E /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB673291682C400C1CB2E /* Endpoint.swift */; };
+		9A1EB6772916834100C1CB2E /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB6762916834100C1CB2E /* DataTransferService.swift */; };
+		9A1EB6792916837200C1CB2E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB6782916837200C1CB2E /* NetworkService.swift */; };
+		9A1EB67B2916838E00C1CB2E /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB67A2916838E00C1CB2E /* NetworkConfig.swift */; };
+		9A1EB67E2916883800C1CB2E /* BooksRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB67D2916883800C1CB2E /* BooksRepository.swift */; };
+		9A1EB6802916892400C1CB2E /* BooksProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB67F2916892400C1CB2E /* BooksProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +62,13 @@
 		9A1EB63F2916131900C1CB2E /* BooksListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksListItemCell.swift; sourceTree = "<group>"; };
 		9A1EB6412916388C00C1CB2E /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		9A1EB66E29167BFE00C1CB2E /* BookDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDTO.swift; sourceTree = "<group>"; };
+		9A1EB6702916822A00C1CB2E /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		9A1EB673291682C400C1CB2E /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		9A1EB6762916834100C1CB2E /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
+		9A1EB6782916837200C1CB2E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		9A1EB67A2916838E00C1CB2E /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
+		9A1EB67D2916883800C1CB2E /* BooksRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksRepository.swift; sourceTree = "<group>"; };
+		9A1EB67F2916892400C1CB2E /* BooksProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +101,7 @@
 			children = (
 				9A1EB5F62914DF3900C1CB2E /* bookSearch */,
 				9A1EB66C291677DC00C1CB2E /* Presentation */,
+				9A1EB672291682AB00C1CB2E /* Infrastructure */,
 				9A1EB60D2914DF3A00C1CB2E /* bookSearchTests */,
 				9A1EB6172914DF3A00C1CB2E /* bookSearchUITests */,
 				9A1EB5F52914DF3900C1CB2E /* Products */,
@@ -155,7 +170,7 @@
 			children = (
 				9A1EB6342915F90900C1CB2E /* Entity */,
 				9A1EB63329151E6D00C1CB2E /* UseCases */,
-				9A1EB6352915F90F00C1CB2E /* Protocol */,
+				9A1EB6352915F90F00C1CB2E /* Interfaces */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -242,11 +257,12 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
-		9A1EB6352915F90F00C1CB2E /* Protocol */ = {
+		9A1EB6352915F90F00C1CB2E /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
+				9A1EB67C2916863900C1CB2E /* RepositoryProtocol */,
 			);
-			path = Protocol;
+			path = Interfaces;
 			sourceTree = "<group>";
 		};
 		9A1EB6362915F9B300C1CB2E /* ViewModel */ = {
@@ -276,6 +292,7 @@
 		9A1EB6492916407F00C1CB2E /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				9A1EB67D2916883800C1CB2E /* BooksRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -291,6 +308,7 @@
 		9A1EB66B291677B500C1CB2E /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				9A1EB6702916822A00C1CB2E /* APIEndpoint.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -302,6 +320,33 @@
 				9A1EB62C29151C4100C1CB2E /* Scene */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		9A1EB672291682AB00C1CB2E /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				9A1EB6752916831300C1CB2E /* Network */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		9A1EB6752916831300C1CB2E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9A1EB673291682C400C1CB2E /* Endpoint.swift */,
+				9A1EB6762916834100C1CB2E /* DataTransferService.swift */,
+				9A1EB6782916837200C1CB2E /* NetworkService.swift */,
+				9A1EB67A2916838E00C1CB2E /* NetworkConfig.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		9A1EB67C2916863900C1CB2E /* RepositoryProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				9A1EB67F2916892400C1CB2E /* BooksProtocol.swift */,
+			);
+			path = RepositoryProtocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,9 +479,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A1EB6802916892400C1CB2E /* BooksProtocol.swift in Sources */,
+				9A1EB6792916837200C1CB2E /* NetworkService.swift in Sources */,
 				9A1EB5F82914DF3900C1CB2E /* AppDelegate.swift in Sources */,
+				9A1EB67B2916838E00C1CB2E /* NetworkConfig.swift in Sources */,
+				9A1EB674291682C400C1CB2E /* Endpoint.swift in Sources */,
 				9A1EB5FA2914DF3900C1CB2E /* SceneDelegate.swift in Sources */,
 				9A1EB66F29167BFE00C1CB2E /* BookDTO.swift in Sources */,
+				9A1EB6772916834100C1CB2E /* DataTransferService.swift in Sources */,
+				9A1EB6712916822A00C1CB2E /* APIEndpoint.swift in Sources */,
+				9A1EB67E2916883800C1CB2E /* BooksRepository.swift in Sources */,
 				9A1EB6422916388C00C1CB2E /* Book.swift in Sources */,
 				9A1EB6392915FD4900C1CB2E /* BookListViewController.swift in Sources */,
 				9A1EB63C291610F100C1CB2E /* Extensions.swift in Sources */,
