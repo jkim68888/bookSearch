@@ -17,6 +17,8 @@
 		9A1EB6392915FD4900C1CB2E /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB6382915FD4900C1CB2E /* BookListViewController.swift */; };
 		9A1EB63C291610F100C1CB2E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB63B291610F100C1CB2E /* Extensions.swift */; };
 		9A1EB6402916131900C1CB2E /* BooksListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB63F2916131900C1CB2E /* BooksListItemCell.swift */; };
+		9A1EB6422916388C00C1CB2E /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB6412916388C00C1CB2E /* Book.swift */; };
+		9A1EB66F29167BFE00C1CB2E /* BookDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB66E29167BFE00C1CB2E /* BookDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		9A1EB6382915FD4900C1CB2E /* BookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
 		9A1EB63B291610F100C1CB2E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9A1EB63F2916131900C1CB2E /* BooksListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksListItemCell.swift; sourceTree = "<group>"; };
+		9A1EB6412916388C00C1CB2E /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		9A1EB66E29167BFE00C1CB2E /* BookDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1EB5F62914DF3900C1CB2E /* bookSearch */,
+				9A1EB66C291677DC00C1CB2E /* Presentation */,
 				9A1EB60D2914DF3A00C1CB2E /* bookSearchTests */,
 				9A1EB6172914DF3A00C1CB2E /* bookSearchUITests */,
 				9A1EB5F52914DF3900C1CB2E /* Products */,
@@ -103,8 +108,7 @@
 			children = (
 				9A1EB6272915195400C1CB2E /* Application */,
 				9A1EB62829151B4B00C1CB2E /* Resources */,
-				9A1EB63029151D8D00C1CB2E /* Utils */,
-				9A1EB62C29151C4100C1CB2E /* Scene */,
+				9A1EB6482916406900C1CB2E /* Data */,
 				9A1EB62929151BDA00C1CB2E /* Domain */,
 			);
 			path = bookSearch;
@@ -149,9 +153,9 @@
 		9A1EB62929151BDA00C1CB2E /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				9A1EB6342915F90900C1CB2E /* Model */,
-				9A1EB63329151E6D00C1CB2E /* Service */,
-				9A1EB6352915F90F00C1CB2E /* Repository */,
+				9A1EB6342915F90900C1CB2E /* Entity */,
+				9A1EB63329151E6D00C1CB2E /* UseCases */,
+				9A1EB6352915F90F00C1CB2E /* Protocol */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -223,25 +227,26 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		9A1EB63329151E6D00C1CB2E /* Service */ = {
+		9A1EB63329151E6D00C1CB2E /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Service;
+			path = UseCases;
 			sourceTree = "<group>";
 		};
-		9A1EB6342915F90900C1CB2E /* Model */ = {
+		9A1EB6342915F90900C1CB2E /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				9A1EB6412916388C00C1CB2E /* Book.swift */,
 			);
-			path = Model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
-		9A1EB6352915F90F00C1CB2E /* Repository */ = {
+		9A1EB6352915F90F00C1CB2E /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Repository;
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		9A1EB6362915F9B300C1CB2E /* ViewModel */ = {
@@ -256,6 +261,47 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		9A1EB6482916406900C1CB2E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9A1EB6492916407F00C1CB2E /* Repositories */,
+				9A1EB66B291677B500C1CB2E /* Network */,
+				9A1EB66A291677A600C1CB2E /* DTO */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		9A1EB6492916407F00C1CB2E /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		9A1EB66A291677A600C1CB2E /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				9A1EB66E29167BFE00C1CB2E /* BookDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		9A1EB66B291677B500C1CB2E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		9A1EB66C291677DC00C1CB2E /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				9A1EB63029151D8D00C1CB2E /* Utils */,
+				9A1EB62C29151C4100C1CB2E /* Scene */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,6 +436,8 @@
 			files = (
 				9A1EB5F82914DF3900C1CB2E /* AppDelegate.swift in Sources */,
 				9A1EB5FA2914DF3900C1CB2E /* SceneDelegate.swift in Sources */,
+				9A1EB66F29167BFE00C1CB2E /* BookDTO.swift in Sources */,
+				9A1EB6422916388C00C1CB2E /* Book.swift in Sources */,
 				9A1EB6392915FD4900C1CB2E /* BookListViewController.swift in Sources */,
 				9A1EB63C291610F100C1CB2E /* Extensions.swift in Sources */,
 				9A1EB6402916131900C1CB2E /* BooksListItemCell.swift in Sources */,
