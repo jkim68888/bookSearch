@@ -104,8 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				9A1EB5F62914DF3900C1CB2E /* bookSearch */,
-				9A1EB66C291677DC00C1CB2E /* Presentation */,
-				9A1EB672291682AB00C1CB2E /* Infrastructure */,
 				9A1EB60D2914DF3A00C1CB2E /* bookSearchTests */,
 				9A1EB6172914DF3A00C1CB2E /* bookSearchUITests */,
 				9A1EB5F52914DF3900C1CB2E /* Products */,
@@ -127,6 +125,8 @@
 			children = (
 				9A1EB6272915195400C1CB2E /* Application */,
 				9A1EB62829151B4B00C1CB2E /* Resources */,
+				9A1EB672291682AB00C1CB2E /* Infrastructure */,
+				9A1EB66C291677DC00C1CB2E /* Presentation */,
 				9A1EB6482916406900C1CB2E /* Data */,
 				9A1EB62929151BDA00C1CB2E /* Domain */,
 			);
