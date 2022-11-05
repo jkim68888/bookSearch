@@ -14,6 +14,9 @@
 		9A1EB60F2914DF3A00C1CB2E /* bookSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB60E2914DF3A00C1CB2E /* bookSearchTests.swift */; };
 		9A1EB6192914DF3A00C1CB2E /* bookSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB6182914DF3A00C1CB2E /* bookSearchUITests.swift */; };
 		9A1EB61B2914DF3A00C1CB2E /* bookSearchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB61A2914DF3A00C1CB2E /* bookSearchUITestsLaunchTests.swift */; };
+		9A1EB6392915FD4900C1CB2E /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB6382915FD4900C1CB2E /* BookListViewController.swift */; };
+		9A1EB63C291610F100C1CB2E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB63B291610F100C1CB2E /* Extensions.swift */; };
+		9A1EB6402916131900C1CB2E /* BooksListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EB63F2916131900C1CB2E /* BooksListItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		9A1EB6142914DF3A00C1CB2E /* bookSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bookSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1EB6182914DF3A00C1CB2E /* bookSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookSearchUITests.swift; sourceTree = "<group>"; };
 		9A1EB61A2914DF3A00C1CB2E /* bookSearchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookSearchUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9A1EB6382915FD4900C1CB2E /* BookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
+		9A1EB63B291610F100C1CB2E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		9A1EB63F2916131900C1CB2E /* BooksListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksListItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1EB63129151E1A00C1CB2E /* BooksListTableView */,
+				9A1EB6382915FD4900C1CB2E /* BookListViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -195,6 +202,7 @@
 		9A1EB63029151D8D00C1CB2E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				9A1EB63B291610F100C1CB2E /* Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -210,6 +218,7 @@
 		9A1EB63229151E2700C1CB2E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9A1EB63F2916131900C1CB2E /* BooksListItemCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -381,6 +390,9 @@
 			files = (
 				9A1EB5F82914DF3900C1CB2E /* AppDelegate.swift in Sources */,
 				9A1EB5FA2914DF3900C1CB2E /* SceneDelegate.swift in Sources */,
+				9A1EB6392915FD4900C1CB2E /* BookListViewController.swift in Sources */,
+				9A1EB63C291610F100C1CB2E /* Extensions.swift in Sources */,
+				9A1EB6402916131900C1CB2E /* BooksListItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,11 +561,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bookSearch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -577,11 +589,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bookSearch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
