@@ -11,6 +11,7 @@ class BookListViewController: UIViewController {
 	// MARK: - ViewModel
 	private var viewModel: BooksListViewModel!
 
+	// MARK: - UI
 	private lazy var bookSearchView: UIView = {
 		let view = UIView()
 		view.addSubview(bookSearchTextField)
@@ -18,7 +19,6 @@ class BookListViewController: UIViewController {
 		return view
 	}()
 
-	// MARK: - UI
 	private lazy var bookSearchTextField: UITextField = {
 		var tf = UITextField()
 		tf.backgroundColor = .clear

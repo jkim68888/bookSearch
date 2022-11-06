@@ -46,7 +46,6 @@ class BooksListItemCell: UITableViewCell {
 	
 	private var bookImage: UIImageView = {
 		let img = UIImageView()
-		img.backgroundColor = .blue
 		return img
 	}()
 

@@ -88,7 +88,7 @@ extension BookDTO {
 					 publishedDate: volumeInfo.publishedDate ?? "출판일 없음",
 					 description: volumeInfo.description ?? "설명 없음",
 					 smallThumbnail: URL(string: volumeInfo.imageLinks?.smallThumbnail.replacingOccurrences(of: "http", with: "https") ?? ""),
-					 thumbnail: URL(string: volumeInfo.imageLinks?.thumbnail ?? ""),
+					 thumbnail: URL(string: volumeInfo.imageLinks?.thumbnail.replacingOccurrences(of: "http", with: "https") ?? ""),
 					 pageCount: volumeInfo.pageCount ?? 0,
 					 categories: volumeInfo.categories ?? ["카테고리 없음"])
 	}
