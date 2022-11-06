@@ -10,7 +10,7 @@ import Foundation
 struct APIEndpoint {
 	static func getBooks(with booksRequestDTO: BooksRequestDTO) -> Endpoint<BooksResponseDTO> {
 		
-		return Endpoint(path: "books/v1/volumes?q=\(booksRequestDTO.q):keyes&key=\(booksRequestDTO.key)",
+		return Endpoint(path: "books/v1/volumes?q=\(booksRequestDTO.q):keyes",
 						method: .get,
 						queryParametersEncodable: booksRequestDTO)
 	}

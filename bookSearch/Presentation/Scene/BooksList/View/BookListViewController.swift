@@ -8,6 +8,8 @@
 import UIKit
 
 class BookListViewController: UIViewController {
+	// MARK: - ViewModel
+	private var viewModel: BooksListViewModel!
 
 	private lazy var bookSearchView: UIView = {
 		let view = UIView()
@@ -16,6 +18,7 @@ class BookListViewController: UIViewController {
 		return view
 	}()
 
+	// MARK: - UI
 	private lazy var bookSearchTextField: UITextField = {
 		var tf = UITextField()
 		tf.backgroundColor = .clear
@@ -46,11 +49,21 @@ class BookListViewController: UIViewController {
 	}()
 	
 	private var booksListTableView = UITableView()
+	
+	static func create(with viewModel: BooksListViewModel) -> BookListViewController {
+		let view = BookListViewController()
+		view.viewModel = viewModel
+		return view
+	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		// ui
 		configure()
 		setupAutoLayout()
+		// vm
+		bind(to: viewModel)
+		viewModel.viewDidLoad()
     }
     
 	private func configure() {
@@ -61,14 +74,13 @@ class BookListViewController: UIViewController {
 		booksListTableView.register(BooksListItemCell.self, forCellReuseIdentifier: BooksListItemCell.identifier)
 		
 		view.backgroundColor = .white
-		self.title = "책 찾기"
+		self.navigationController?.navigationBar.topItem?.title = "책 찾기"
 		view.addSubview(bookSearchView)
 		view.addSubview(booksListTableView)
 	}
 	
 	// 오토레이아웃
 	private func setupAutoLayout() {
-		
 		bookSearchView.translatesAutoresizingMaskIntoConstraints = false
 		bookSearchView.heightAnchor.constraint(equalToConstant: 48).isActive = true
 		bookSearchView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
@@ -96,14 +108,33 @@ class BookListViewController: UIViewController {
 		booksListTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 	}
 	
-	@objc private func doneButtonTapped(_ textField: UITextField) {
+	// MARK: - Bind Data
+	private func bind(to viewModel: BooksListViewModel) {
+		viewModel.items.observe(on: self) { [weak self] _ in self?.updateItems() }
+		viewModel.error.observe(on: self) { [weak self] in self?.showError($0) }
+	}
+	
+	private func updateItems() {
+		booksListTableView.reloadData()
 		
+		// 검색된 책 총 수량 표시
+		print("책 수량 : \(viewModel.totalPageCount)")
+	}
+	
+	private func showError(_ error: String) {
+		guard !error.isEmpty else { return }
+		let alert = UIAlertController(title: title, message: error, preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
+	}
+	
+	@objc private func doneButtonTapped(_ textField: UITextField) {
+		viewModel.didSearch(searchText: bookSearchTextField.text ?? "")
 	}
 
 }
 
-
-
+// MARK: - TextField Delegate
 extension BookListViewController: UITextFieldDelegate {
 
 	@objc private func textFieldEditingChanged(_ textField: UITextField) {
@@ -117,18 +148,27 @@ extension BookListViewController: UITextFieldDelegate {
 	}
 }
 
+// MARK: - UITableView Delegate, DataSource
 extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 1
+		return viewModel.items.value.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: BooksListItemCell.identifier, for: indexPath) as? BooksListItemCell else { return UITableViewCell() }
 		
+		cell.binding(with: viewModel.items.value[indexPath.row])
+		
+		if indexPath.row == viewModel.items.value.count - 1 {
+			viewModel.didLoadNextPage()
+		}
+		
 		return cell
 	}
 	
-	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		viewModel.didSelectItem(at: indexPath.row)
+	}
 	
 }

@@ -11,15 +11,15 @@ protocol SearchBooksProtocol {
 	func execute(query: BooksQuery, completion: @escaping (Result<Books, Error>) -> Void)
 }
 
-final class SearchMoviesUseCase: SearchBooksProtocol {
-	private let booksRepository: BooksRpository
+final class SearchBooksUseCase: SearchBooksProtocol {
+	private let booksProtocol: BooksProtocol
 	
-	init(booksRepository: BooksRpository) {
-		self.booksRepository = booksRepository
+	init(booksProtocol: BooksProtocol) {
+		self.booksProtocol = booksProtocol
 	}
 	
 	func execute(query: BooksQuery, completion: @escaping (Result<Books, Error>) -> Void) {
-		return booksRepository.fetchBooksList(query: query) { result in
+		return booksProtocol.fetchBooksList(query: query) { result in
 			completion(result)
 		}
 	}

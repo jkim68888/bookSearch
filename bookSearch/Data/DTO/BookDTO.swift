@@ -15,7 +15,6 @@ struct BooksRequestDTO: Encodable {
 	let q: String
 	let start: Int // books 시작 index
 	let maxResults: Int // books end index
-	let key: String
 }
 
 // MARK: - Response
@@ -41,13 +40,13 @@ struct BookDTO: Decodable {
 
 struct VolumeDTO: Decodable {
 	let title: String
-	let authors: [String]
-	let publisher: String
-	let publishedDate: String
-	let description: String
-	let imageLinks: ImageLinkDTO
-	let pageCount: Int
-	let categories: [String]
+	let authors: [String]?
+	let publisher: String?
+	let publishedDate: String?
+	let description: String?
+	let imageLinks: ImageLinkDTO?
+	let pageCount: Int?
+	let categories: [String]?
 	
 	private enum CodingKeys: String, CodingKey {
 		case title
@@ -84,13 +83,14 @@ extension BookDTO {
 	func toDomain() -> Book {
 		return .init(id: id,
 					 title: volumeInfo.title,
-					 authors: volumeInfo.authors,
-					 publisher: volumeInfo.publisher,
-					 publishedDate: volumeInfo.publishedDate,
-					 description: volumeInfo.description,
-					 smallThumbnail: URL(string: volumeInfo.imageLinks.smallThumbnail),
-					 thumbnail: URL(string: volumeInfo.imageLinks.thumbnail),
-					 pageCount: volumeInfo.pageCount,
-					 categories: volumeInfo.categories)
+					 authors: volumeInfo.authors ?? ["저자 없음"],
+					 publisher: volumeInfo.publisher ?? "출판사 없음",
+					 publishedDate: volumeInfo.publishedDate ?? "출판일 없음",
+					 description: volumeInfo.description ?? "설명 없음",
+					 smallThumbnail: URL(string: volumeInfo.imageLinks?.smallThumbnail.replacingOccurrences(of: "http", with: "https") ?? ""),
+					 thumbnail: URL(string: volumeInfo.imageLinks?.thumbnail ?? ""),
+					 pageCount: volumeInfo.pageCount ?? 0,
+					 categories: volumeInfo.categories ?? ["카테고리 없음"])
 	}
 }
+

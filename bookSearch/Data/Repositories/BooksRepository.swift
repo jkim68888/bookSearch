@@ -17,7 +17,7 @@ final class BooksRpository {
 
 extension BooksRpository: BooksProtocol {
 	func fetchBooksList(query: BooksQuery, completion: @escaping (Result<Books, Error>) -> Void) {
-		let requestDTO = BooksRequestDTO(q: query.query, start: query.start, maxResults: query.end, key: AppConfiguration().apiKey)
+		let requestDTO = BooksRequestDTO(q: query.query, start: query.start, maxResults: query.end)
 		let endpoint = APIEndpoint.getBooks(with: requestDTO)
 		
 		self.dataTransferService.request(with: endpoint) { result in

@@ -9,6 +9,8 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+	let appDIContainer = AppDIContainer()
+	var appFlowCoordinator: AppFlowCoordinator?
 	var window: UIWindow?
 
 
@@ -19,8 +21,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		window = UIWindow(frame: windowScene.coordinateSpace.bounds)
 		window?.windowScene = windowScene
-		let bookListViewController = UINavigationController(rootViewController: BookListViewController())
-		window?.rootViewController = bookListViewController
+		
+		let navigationController = UINavigationController()
+		window?.rootViewController = navigationController
+		appFlowCoordinator = AppFlowCoordinator(navigationController: navigationController, appDIContainer: appDIContainer)
+		appFlowCoordinator?.start()
 		window?.makeKeyAndVisible()
 	}
 
