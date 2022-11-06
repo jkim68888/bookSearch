@@ -48,6 +48,12 @@ class BookListViewController: UIViewController {
 		return btn
 	}()
 	
+	private let bookCountLabel: UILabel = {
+		var lbl = UILabel()
+		
+		return lbl
+	}()
+	
 	private var booksListTableView = UITableView()
 	
 	static func create(with viewModel: BooksListViewModel) -> BookListViewController {
@@ -76,6 +82,7 @@ class BookListViewController: UIViewController {
 		view.backgroundColor = .white
 		self.navigationController?.navigationBar.topItem?.title = "책 찾기"
 		view.addSubview(bookSearchView)
+		view.addSubview(bookCountLabel)
 		view.addSubview(booksListTableView)
 	}
 	
@@ -100,8 +107,13 @@ class BookListViewController: UIViewController {
 		bookSearchDoneButton.trailingAnchor.constraint(equalTo: bookSearchView.trailingAnchor).isActive = true
 		bookSearchDoneButton.centerYAnchor.constraint(equalTo: bookSearchView.centerYAnchor).isActive = true
 		
+		bookCountLabel.translatesAutoresizingMaskIntoConstraints = false
+		bookCountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
+		bookCountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
+		bookCountLabel.topAnchor.constraint(equalTo: bookSearchView.bottomAnchor, constant: 20).isActive = true
+		
 		booksListTableView.translatesAutoresizingMaskIntoConstraints = false
-		booksListTableView.topAnchor.constraint(equalTo: bookSearchView.bottomAnchor, constant: 20).isActive = true
+		booksListTableView.topAnchor.constraint(equalTo: bookCountLabel.bottomAnchor, constant: 15).isActive = true
 		booksListTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 		booksListTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
 		booksListTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -118,7 +130,7 @@ class BookListViewController: UIViewController {
 		booksListTableView.reloadData()
 		
 		// 검색된 책 총 수량 표시
-		print("책 수량 : \(viewModel.totalPageCount)")
+		bookCountLabel.text = "검색된 책 수량 : \(viewModel.totalPageCount)"
 	}
 	
 	private func showError(_ error: String) {

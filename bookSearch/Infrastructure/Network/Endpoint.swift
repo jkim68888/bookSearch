@@ -90,7 +90,7 @@ extension Requestable {
 		let baseURL = config.baseURL.absoluteString.last != "/" ? config.baseURL.absoluteString + "/" : config.baseURL.absoluteString
 		let endpoint = isFullPath ? path : baseURL.appending(path)
 		
-		guard var urlComponents = URLComponents(string: endpoint) else { throw RequestGenerationError.components }
+		guard var urlComponents = URLComponents(string: endpoint.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { throw RequestGenerationError.components }
 		var urlQueryItems = [URLQueryItem]()
 		
 		let queryParameters = try queryParametersEncodable?.toDictionary() ?? self.queryParameters

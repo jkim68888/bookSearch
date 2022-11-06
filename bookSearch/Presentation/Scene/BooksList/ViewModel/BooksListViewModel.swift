@@ -35,7 +35,7 @@ final class BooksListViewModel: BooksListProtocol {
 	var isLoading = false
 	var loadBooksCount = 10
 	var currentPage: Int = 0
-	var totalPageCount: Int = 1
+	var totalPageCount: Int = 0
 	var hasMorePages: Bool { currentPage * loadBooksCount < totalPageCount }
 	var nextPage: Int { hasMorePages ? currentPage + 1 : currentPage }
 	
@@ -60,13 +60,13 @@ final class BooksListViewModel: BooksListProtocol {
 		currentPage += 1
 		totalPageCount = books.totalCount
 		
-		self.books += books.books
+		books.books.forEach{ self.books.append($0) }
 		items.value = books.books.map{ BookListItemViewModel.init(book: $0)}
 	}
 	
 	private func resetPages() {
 		currentPage = 0
-		totalPageCount = 1
+		totalPageCount = 0
 		books.removeAll()
 		items.value.removeAll()
 	}
@@ -104,8 +104,8 @@ extension BooksListViewModel {
 			self.error.value = "마지막 검색 결과입니다."
 		} else {
 			load(query: .init(query: query.value,
-							  start: currentPage,
-							  end: (currentPage + 1) * loadBooksCount ))
+							  start: currentPage + 1,
+							  end: (currentPage + 1) * loadBooksCount))
 		}
 	}
 	

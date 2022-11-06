@@ -107,9 +107,10 @@ class BookDetailViewController: UIViewController {
 	// MARK: - Bind Data
 	private func bind(to viewModel: BookDetailViewModel) {
 		viewModel.book.observe(on: self) { [weak self] book in
-			guard let thumbnail = viewModel.book.value?.thumbnail else { return }
+			if let thumbnail = viewModel.book.value?.thumbnail {
+				self?.bookImage.load(url: thumbnail)
+			}
 			
-			self?.bookImage.load(url: thumbnail)
 			self?.bookTitle.text = viewModel.title
 			self?.bookDescriptions.text = viewModel.book.value?.description
 		}

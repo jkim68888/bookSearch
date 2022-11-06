@@ -58,6 +58,14 @@ class BooksListItemCell: UITableViewCell {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
+	
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		bookImage.image = nil
+		bookTitle.text = nil
+		bookAuthors.text = nil
+		bookPublishedDate.text = nil
+	}
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
