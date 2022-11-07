@@ -32,7 +32,7 @@
 
 - Dependancy Injection (Direction: presentation -> Domain <- Data)
 - Flow Coordinator (뷰컨트롤러 이동 로직)
-- Observable (rxSwift 사용 안하고 Swift로 구현)
+- Observable (Swift로 구현)
 
 ## 유닛 테스트
 
