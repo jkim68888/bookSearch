@@ -33,17 +33,18 @@ class BookListViewController: UIViewController {
 		tf.layer.borderColor = UIColor.gray.cgColor
 		tf.layoutMargins = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
 		tf.addLeftPadding()
-		tf.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
+		tf.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
 		return tf
 	}()
 	
 	private lazy var bookSearchDoneButton: UIButton = {
 		var btn = UIButton()
-		btn.backgroundColor = .blue
+		btn.backgroundColor = .systemGray2
 		btn.setTitle("찾기", for: .normal)
 		btn.setTitleColor(.white, for: .normal)
 		btn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
 		btn.layer.cornerRadius = 6
+		btn.isEnabled = false
 		btn.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
 		return btn
 	}()
@@ -78,6 +79,8 @@ class BookListViewController: UIViewController {
 		booksListTableView.delegate = self
 		booksListTableView.dataSource = self
 		booksListTableView.register(BooksListItemCell.self, forCellReuseIdentifier: BooksListItemCell.identifier)
+		
+		booksListTableView.rowHeight = 120
 		
 		view.backgroundColor = .white
 		self.navigationController?.navigationBar.topItem?.title = "책 찾기"
@@ -123,14 +126,17 @@ class BookListViewController: UIViewController {
 	// MARK: - Bind Data
 	private func bind(to viewModel: BooksListViewModel) {
 		viewModel.items.observe(on: self) { [weak self] _ in self?.updateItems() }
+		viewModel.totalBooksCount.observe(on: self) { [weak self] _ in self?.updateTotalBooksCount() }
 		viewModel.error.observe(on: self) { [weak self] in self?.showError($0) }
 	}
 	
 	private func updateItems() {
 		booksListTableView.reloadData()
-		
+	}
+	
+	private func updateTotalBooksCount() {
 		// 검색된 책 총 수량 표시
-		bookCountLabel.text = "검색된 책 수량 : \(viewModel.totalPageCount)"
+		bookCountLabel.text = "검색된 책 수량 : \(viewModel.totalBooksCount.value)"
 	}
 	
 	private func showError(_ error: String) {
@@ -142,21 +148,47 @@ class BookListViewController: UIViewController {
 	
 	@objc private func doneButtonTapped(_ textField: UITextField) {
 		viewModel.didSearch(searchText: bookSearchTextField.text ?? "")
+		self.view.endEditing(true)
 	}
 
 }
 
 // MARK: - TextField Delegate
 extension BookListViewController: UITextFieldDelegate {
-
-	@objc private func textFieldEditingChanged(_ textField: UITextField) {
-		
+	
+	func textFieldNoValueHandler(textField: UITextField) {
+		if textField.text?.count == 1 {
+			if textField.text?.first == " " {
+				textField.text = ""
+				return
+			}
+		}
 	}
 
-	// 엔터 누르면 일단 키보드 내림
+	@objc private func textFieldEditingChanged(textField: UITextField) {
+		textFieldNoValueHandler(textField: textField)
+		
+		if textField.text == "" {
+			bookSearchDoneButton.backgroundColor = .systemGray2
+			bookSearchDoneButton.isEnabled = false
+		} else {
+			bookSearchDoneButton.backgroundColor = .systemBlue
+			bookSearchDoneButton.isEnabled = true
+		}
+	}
+	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		textField.resignFirstResponder()
-		return false
+		textFieldNoValueHandler(textField: textField)
+		
+		if textField.text != "" {
+			viewModel.didSearch(searchText: bookSearchTextField.text ?? "")
+			self.view.endEditing(true)
+		} else {
+			showError("검색어를 입력해주세요.")
+			self.view.endEditing(true)
+		}
+
+		return true
 	}
 }
 
@@ -169,6 +201,7 @@ extension BookListViewController: UITableViewDelegate, UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: BooksListItemCell.identifier, for: indexPath) as? BooksListItemCell else { return UITableViewCell() }
+		cell.selectionStyle = .none
 		
 		cell.binding(with: viewModel.items.value[indexPath.row])
 		

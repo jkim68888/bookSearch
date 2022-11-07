@@ -43,6 +43,7 @@ final class BooksListViewModel: BooksListProtocol {
 	
 	// MARK: - OUTPUT
 	let items: Observable<[BookListItemViewModel]> = Observable([])
+	let totalBooksCount: Observable<Int> = Observable(0)
 	let query: Observable<String> = Observable("")
 	let error: Observable<String> = Observable("")
 	var isEmpty: Bool { return items.value.isEmpty }
@@ -60,7 +61,7 @@ final class BooksListViewModel: BooksListProtocol {
 		currentPage += 1
 		totalPageCount = books.totalCount
 		
-		books.books.forEach{ self.books.append($0) }
+		self.books = books.books
 		items.value = books.books.map{ BookListItemViewModel.init(book: $0)}
 	}
 	
@@ -71,7 +72,7 @@ final class BooksListViewModel: BooksListProtocol {
 		items.value.removeAll()
 	}
 	
-	private func load(query: BooksQuery) {
+	private func load(query: BooksQuery, isSearchDone: Bool = false) {
 		isLoading = true
 		self.query.value = query.query
 		
@@ -80,6 +81,9 @@ final class BooksListViewModel: BooksListProtocol {
 			case .success(let page):
 				self.isLoading = false
 				self.appendPage(page)
+				if isSearchDone {
+					self.totalBooksCount.value = page.totalCount
+				}
 			case .failure(let error):
 				self.isLoading = false
 				self.handle(error: error)
@@ -113,7 +117,8 @@ extension BooksListViewModel {
 		resetPages()
 		load(query: BooksQuery.init(query: searchText,
 									start: currentPage * loadBooksCount,
-									end: (currentPage + 1) * loadBooksCount))
+									end: (currentPage + 1) * loadBooksCount),
+			 isSearchDone: true)
 	}
 	
 	func didSelectItem(at index: Int) {

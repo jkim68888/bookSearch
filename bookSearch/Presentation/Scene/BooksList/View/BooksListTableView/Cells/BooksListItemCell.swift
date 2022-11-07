@@ -78,7 +78,6 @@ class BooksListItemCell: UITableViewCell {
 	// 오토레이아웃
 	private func setupAutoLayout() {
 		bookView.translatesAutoresizingMaskIntoConstraints = false
-		bookView.heightAnchor.constraint(equalToConstant: 120).isActive = true
 		bookView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
 		bookView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
 		bookView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
