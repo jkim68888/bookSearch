@@ -9,7 +9,7 @@ import UIKit
 
 class BookDetailViewController: UIViewController {
 	// MARK: - ViewModel
-	private var viewModel: BookDetailViewModel!
+	private var viewModel: DefaultBookDetailViewModel!
 	
 	// MARK: - UI
 	private lazy var scrollView : UIScrollView = {
@@ -45,7 +45,7 @@ class BookDetailViewController: UIViewController {
 		return lbl
 	}()
 	
-	static func create(with viewModel: BookDetailViewModel) -> BookDetailViewController {
+	static func create(with viewModel: DefaultBookDetailViewModel) -> BookDetailViewController {
 		let view = BookDetailViewController()
 		view.viewModel = viewModel
 		return view
@@ -63,6 +63,9 @@ class BookDetailViewController: UIViewController {
 	private func configure() {
 		view.backgroundColor = .white
 		view.addSubview(scrollView)
+		
+		// for unit test
+		view.accessibilityIdentifier = "bookDetailViewAccessIdentifier"
 		
 		let contentViewHeight = contentView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor)
 		contentViewHeight.priority = .defaultLow
@@ -105,7 +108,7 @@ class BookDetailViewController: UIViewController {
 	}
 	
 	// MARK: - Bind Data
-	private func bind(to viewModel: BookDetailViewModel) {
+	private func bind(to viewModel: DefaultBookDetailViewModel) {
 		viewModel.book.observe(on: self) { [weak self] book in
 			if let thumbnail = viewModel.book.value?.thumbnail {
 				self?.bookImage.load(url: thumbnail)

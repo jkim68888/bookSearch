@@ -76,11 +76,20 @@ class BookListViewController: UIViewController {
 	private func configure() {
 		bookSearchTextField.delegate = self
 		
+		if bookSearchTextField.accessibilityPerformMagicTap() {
+			bookSearchTextField.becomeFirstResponder()
+		}
+		
+		// for unit test
+		bookSearchTextField.accessibilityIdentifier = "bookSearchAccessIdentifier"
+		
 		booksListTableView.delegate = self
 		booksListTableView.dataSource = self
 		booksListTableView.register(BooksListItemCell.self, forCellReuseIdentifier: BooksListItemCell.identifier)
-		
 		booksListTableView.rowHeight = 120
+		
+		// for unit test
+		booksListTableView.accessibilityIdentifier = "bookTableViewAccessIdentifier"
 		
 		view.backgroundColor = .white
 		self.navigationController?.navigationBar.topItem?.title = "책 찾기"

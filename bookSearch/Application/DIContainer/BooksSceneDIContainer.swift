@@ -41,7 +41,7 @@ final class BooksSceneDIContainer: BooksFlowCoordinatorDependencies {
 	
 	// MARK: - Book Details
 	func makeBookDetailsViewController(book: Book) -> UIViewController {
-		return BookDetailViewController.create(with: makeBooksDetailsViewModel(book: book))
+		return BookDetailViewController.create(with: makeBooksDetailsViewModel(book: book) as! DefaultBookDetailViewModel)
 	}
 	
 	func makeBooksDetailsViewModel(book: Book) -> BookDetailViewModel {
